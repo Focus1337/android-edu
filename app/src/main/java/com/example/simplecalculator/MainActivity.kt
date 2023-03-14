@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         helloTextView = findViewById(R.id.textView)
 
-        val plusButton: Button = findViewById(R.id.buttonPlus)
+        val plusButton: Button = findViewById(R.id.plusButton)
 
         plusButton.setOnClickListener {
             helloTextView.text = "hello guys"
