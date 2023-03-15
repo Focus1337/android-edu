@@ -3,6 +3,7 @@ package com.example.simplecalculator
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.Group
@@ -26,22 +27,44 @@ class MainActivity : AppCompatActivity() {
         operationTextView = findViewById(R.id.operationTextView)
         resultTextView = findViewById(R.id.resultTextView)
 
-//        val variableGroup: Group = findViewById(R.id.variableGroup)
-//        val operationGroup: Group = findViewById(R.id.operationGroup)
+        val equalButton: Button = findViewById(R.id.equalButton)
 
-        val buttonGroup: Group = findViewById(R.id.buttonGroup)
+        equalButton.setOnClickListener {
+            val mathExpression = calculator.deserialize(operationTextView.text.toString())
+            resultTextView.text = calculator.calculate(
+                mathExpression.arg1,
+                mathExpression.operation,
+                mathExpression.arg2
+            )
+        }
 
-//        for (yes in operationGroup.referencedIds) {
-//            val govno: Button = findViewById(yes)
-//            Log.i("xd", govno.text.toString())
+//        val buttonGroup: Group = findViewById(R.id.buttonGroup)
+//
+//        var prevButton: Button = findViewById(R.id.equalButton)
+//        var arg1: String
+//        val arg2: String
+//        val operators = calculator.operators.values.toList()
+//        val numbers = listOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
+//
+//        buttonGroup.setAllOnClickListener {
+//            if ((it as Button).text in numbers) {
+//
+//            }
+//
+//            if ((it as Button).text in operators) {
+//                if (prevButton.text !in numbers) {
+//                    Log.i("XDDD", "PREV OPERATOR ISN'T VAR")
+////                    return@setAllOnClickListener
+//                } else {
+//                    arg1 = prevButton.text.toString()
+//                    prevButton = it
+//                }
+//            }
+//
 //        }
 
 
-        buttonGroup.setAllOnClickListener {
-            Log.i("XDDD", it.toString())
-        }
-
-
+//        Log.i("XDDD", it.toString())
 //
 //        val plusButton: Button = findViewById(R.id.plusButton)
 //
