@@ -7,16 +7,27 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var helloTextView: TextView
+    private lateinit var resultTextView: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        helloTextView = findViewById(R.id.textView)
+
+        val calculator = Calculator()
+
+        helloTextView = findViewById(R.id.operationTextView)
+        resultTextView = findViewById(R.id.resultTextView)
 
         val plusButton: Button = findViewById(R.id.plusButton)
 
-        plusButton.setOnClickListener {
-            helloTextView.text = "hello guys"
-        }
+        val arg1 = 12
+        val arg2 = 4
 
+        plusButton.setOnClickListener {
+            helloTextView.text = "$arg1 ${calculator.getOperationSign(Operation.Plus)} $arg2"
+            resultTextView.text = calculator.calculate(arg1, Operation.Plus, arg2)
+        }
     }
+
+
+
 }

@@ -17,4 +17,6 @@
     <string name="operation_button_equal">=</string>
     <string name="operation_button_multiply">*</string>
     <string name="operation_button_divide">/</string>
+
+    <string name="operation_result_on_start">0</string>
 </resources>
