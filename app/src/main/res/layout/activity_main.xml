@@ -176,19 +176,29 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
 
-<!--    <androidx.constraintlayout.widget.Group-->
-<!--        android:id="@+id/variableGroup"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:visibility="visible"-->
-<!--        app:constraint_referenced_ids="button0, button1, button2, button3, button4, button5, button6, button7, button8, button9" />-->
+    <Button
+        android:id="@+id/defaultButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontalGuideline" />
 
-<!--    <androidx.constraintlayout.widget.Group-->
-<!--        android:id="@+id/operationGroup"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:visibility="visible"-->
-<!--        app:constraint_referenced_ids="minusButton, plusButton, multiplyButton, divideButton, equalButton" />-->
+    <!--    <androidx.constraintlayout.widget.Group-->
+    <!--        android:id="@+id/variableGroup"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:visibility="visible"-->
+    <!--        app:constraint_referenced_ids="button0, button1, button2, button3, button4, button5, button6, button7, button8, button9" />-->
+
+    <!--    <androidx.constraintlayout.widget.Group-->
+    <!--        android:id="@+id/operationGroup"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:visibility="visible"-->
+    <!--        app:constraint_referenced_ids="minusButton, plusButton, multiplyButton, divideButton, equalButton" />-->
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/buttonGroup"
