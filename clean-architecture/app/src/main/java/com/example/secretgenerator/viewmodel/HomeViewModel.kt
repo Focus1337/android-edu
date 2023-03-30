@@ -10,11 +10,17 @@ import kotlinx.coroutines.launch
 class HomeViewModel : ViewModel() {
 
     private val todoUseCase = TodoUseCase()
-    val todoDataMutable = MutableLiveData<TodoData?>()
+    private val todoDataMutableMap = mutableMapOf<Int, MutableLiveData<TodoData>>()
 
-    fun getTodoData(id: Int) {
-        viewModelScope.launch {
-            todoDataMutable.postValue(todoUseCase.getTodo(id))
+    fun getTodoData(id: Int): MutableLiveData<TodoData> {
+        return if (todoDataMutableMap.containsKey(id)) todoDataMutableMap[id]!!
+        else {
+            val data = MutableLiveData<TodoData>()
+            viewModelScope.launch {
+                data.postValue(todoUseCase.getTodo(id))
+                todoDataMutableMap[id] = data
+            }
+            data
         }
     }
 }

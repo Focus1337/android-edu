@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.FragmentBase
@@ -22,6 +23,8 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var prefManager: PrefManager
+
+    private lateinit var viewModel: HomeViewModel
 
     private lateinit var usersRecyclerView: RecyclerView
     private lateinit var usersRecyclerAdapter: UsersRecyclerAdapter
@@ -39,6 +42,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
         getUsers()
         getTodos(0, 20)
