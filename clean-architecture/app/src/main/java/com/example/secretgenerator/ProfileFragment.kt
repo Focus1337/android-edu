@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.secretgenerator.databinding.FragmentProfileBinding
-import com.example.secretgenerator.viewmodel.HomeViewModel
 import com.example.secretgenerator.viewmodel.ProfileViewModel
 import kotlin.random.Random
 
@@ -33,18 +32,14 @@ class ProfileFragment : Fragment() {
 
         binding.helloTextView.text = "Hello, ${prefManager.getUsername()}"
 
-//        binding.curUsernameTextInput.setText(prefManager.getUsername())
-//        binding.curPasswordTextInput.setText(prefManager.getPassword())
-
-        viewModel.getTodoData(Random.nextInt(40))
-
-        viewModel.todoDataMutable.observe(viewLifecycleOwner) {
+        viewModel.getUserData(Random.nextInt(40))
+        viewModel.userDataMutable.observe(viewLifecycleOwner) {
             if (it == null) {
-                binding.curUsernameTextInput.setText("Данные пусты")
-                binding.curPasswordTextInput.setText("Данные пусты")
+                binding.curUsernameTextInput.setText("Empty data")
+                binding.curPasswordTextInput.setText("Empty data")
             } else {
-                binding.curUsernameTextInput.setText(it.toString())
-                binding.curPasswordTextInput.setText(it.toString())
+                binding.curUsernameTextInput.setText(it.email)
+                binding.curPasswordTextInput.setText(it.username)
             }
         }
 

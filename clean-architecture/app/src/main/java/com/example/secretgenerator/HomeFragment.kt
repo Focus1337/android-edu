@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
         getUsers()
-        getTodos(0, 20)
+//        getTodos(0, 20)
 
         initUsersRecycler()
         initTodosRecycler()
@@ -69,32 +69,32 @@ class HomeFragment : Fragment() {
 
     private fun initTodosRecycler() {
         todosRecyclerView = binding.todosRecyclerView
-        todosRecyclerAdapter = TodosRecyclerAdapter(ArrayList())
+        todosRecyclerAdapter = TodosRecyclerAdapter(viewModel, this)
 
         todosRecyclerView.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         todosRecyclerView.adapter = todosRecyclerAdapter
     }
 
-    private fun getTodos(start: Int, end: Int) {
-        JsonPlaceholderApi.service.makeRequest(
-            "https://jsonplaceholder.typicode.com/todos?_start=${start}&_end=${end}",
-            object : RequestCallback {
-                override fun onSuccess(response: String) {
-                    val todoList = Gson().fromJson(response, Array<TodoEntity>::class.java)
-                        .toList() as ArrayList<TodoEntity>
-
-                    Handler(Looper.getMainLooper()).post {
-                        todosRecyclerAdapter = TodosRecyclerAdapter(todoList)
-                        todosRecyclerView.adapter = todosRecyclerAdapter
-                    }
-                }
-
-                override fun onFailure(error: String) {
-                    Log.d("CONNECTION ERROR", "Connection error: $error")
-                }
-            })
-    }
+//    private fun getTodos(start: Int, end: Int) {
+//        JsonPlaceholderApi.service.makeRequest(
+//            "https://jsonplaceholder.typicode.com/todos?_start=${start}&_end=${end}",
+//            object : RequestCallback {
+//                override fun onSuccess(response: String) {
+//                    val todoList = Gson().fromJson(response, Array<TodoEntity>::class.java)
+//                        .toList() as ArrayList<TodoEntity>
+//
+//                    Handler(Looper.getMainLooper()).post {
+//                        todosRecyclerAdapter = TodosRecyclerAdapter(todoList)
+//                        todosRecyclerView.adapter = todosRecyclerAdapter
+//                    }
+//                }
+//
+//                override fun onFailure(error: String) {
+//                    Log.d("CONNECTION ERROR", "Connection error: $error")
+//                }
+//            })
+//    }
 
     private fun getUsers() {
         JsonPlaceholderApi.service.makeRequest(

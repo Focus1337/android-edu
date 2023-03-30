@@ -1,19 +1,19 @@
 package com.example.data.usecase
 
 import com.example.data.datasource.DataSources
-import com.example.domain.dto.TodoData
-import com.example.domain.usecase.ITodoUseCase
+import com.example.domain.dto.UserData
+import com.example.domain.usecase.IUserUseCase
 import retrofit2.awaitResponse
 
-class TodoUseCase : ITodoUseCase {
 
-    override suspend fun getTodo(id: Int): TodoData? {
+class UserUseCase : IUserUseCase {
+    override suspend fun getUser(id: Int): UserData? {
         if (id == 0) {
             return null
         }
         return DataSources
-            .todoService
-            .getTodoData(id)
+            .userService
+            .getUserData(id)
             .awaitResponse()
             .body()
     }

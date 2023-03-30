@@ -3,19 +3,18 @@ package com.example.secretgenerator.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.data.usecase.TodoUseCase
-import com.example.domain.dto.TodoData
+import com.example.data.usecase.UserUseCase
+import com.example.domain.dto.UserData
 import kotlinx.coroutines.launch
-
 
 class ProfileViewModel : ViewModel() {
 
-    private val todoUseCase = TodoUseCase()
-    val todoDataMutable = MutableLiveData<TodoData?>()
+    private val userUseCase = UserUseCase()
+    val userDataMutable = MutableLiveData<UserData?>()
 
-    fun getTodoData(id: Int) {
+    fun getUserData(id: Int) {
         viewModelScope.launch {
-            todoDataMutable.postValue(todoUseCase.getTodo(id))
+            userDataMutable.postValue(userUseCase.getUser(id))
         }
     }
 }

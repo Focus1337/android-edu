@@ -4,11 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.secretgenerator.R
 import com.example.secretgenerator.TodoEntity
+import com.example.secretgenerator.viewmodel.HomeViewModel
 
-class TodosRecyclerAdapter(private val entityArrayList: ArrayList<TodoEntity>) :
+class TodosRecyclerAdapter(
+    private val viewModel: HomeViewModel,
+    private val lifecycleOwner: LifecycleOwner
+) :
     RecyclerView.Adapter<TodosRecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -29,11 +36,19 @@ class TodosRecyclerAdapter(private val entityArrayList: ArrayList<TodoEntity>) :
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int = entityArrayList.size
+    override fun getItemCount(): Int = 1000//entityArrayList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.title.text = entityArrayList[position].title
-        holder.username.text = entityArrayList[position].userId.toString()
-        holder.completed.text = entityArrayList[position].completed.toString()
+        viewModel.getTodoData(position).observe(lifecycleOwner) {
+            if (it == null) {
+                holder.title.text = "Loading"
+                holder.username.text = "Loading"
+                holder.completed.text = "Loading"
+            } else {
+                holder.title.text = it.title
+                holder.username.text = it.id.toString()
+                holder.completed.text = it.completed.toString()
+            }
+        }
     }
 }
