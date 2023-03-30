@@ -11,7 +11,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.core.FragmentBase
+import com.example.secretgenerator.adapter.TodosRecyclerAdapter
+import com.example.secretgenerator.adapter.UsersRecyclerAdapter
 import com.example.secretgenerator.databinding.FragmentHomeBinding
+import com.example.secretgenerator.viewmodel.HomeViewModel
 import com.google.gson.Gson
 
 class HomeFragment : Fragment() {
